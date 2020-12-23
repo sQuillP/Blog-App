@@ -1,0 +1,117 @@
+<%-include('partials/header')-%>
+<style>
+	body {
+		background:gray;
+		font-family: 'Crimson Text', serif;
+	}
+</style>
+<!-- Show specific infomration about a blog -->
+<div class='container pt-5 mt-4 pb-3 bg-white'>
+	<div class='row justify-content-center'>
+		<div class='col-12 mt-3'>
+			<h2 class='text-center'>
+				<%=blog.title%>
+			</h2>
+		</div>
+		<div>
+			<h4>By: <%=blog.author.username%></h3>
+		</div>
+	</div>
+	<hr class='mb-4'>
+	<div class='row justify-content-center'>
+			<img style='height:400px; width:400px; object-fit:contain;' src ='<%=blog.image%>'>
+	</div>
+	<div class='row justify-content-center'>
+	</div>
+	<div class='row m-3 border mt-3 p-2'>
+		<p><%= blog.content %></p>
+	</div>
+	<%if(blog.author._id.equals(currentUser._id)){%>
+	<div class='d-flex flex-row m-3'>
+		<a class='btn btn-sm btn-primary mr-1' href='/blogs/<%=blog._id%>/edit'>Edit blog</a>
+		<form action ='/blogs/<%=blog._id%>?_method=DELETE' method='POST'>
+			<button class='btn btn-sm btn-danger ml-1'>Delete blog</button>
+		</form>
+		<a class='btn btn-sm btn-warning ml-2' href='/blogs'><i class="fas fa-backward"></i> Go back</a>
+	</div>
+	<%} else{%>
+		<div class='d-flex flex-row m-3'>
+		<a class='btn btn-sm btn-warning ml-2' href='/blogs'><i class="fas fa-backward"></i> Go back</a>
+	</div>
+	<%}%>
+	<!-- Comments sections	 -->
+<!-- Load ejs tags here	 -->
+	<%if(!blog.comments.length){%>
+	<div class='d-flex border-bottom'>
+		<div>
+			<h2>
+				No comments have been made
+			</h2>
+		</div>
+	</div>
+	
+<%	} else { %>
+	
+	<div class='text-left p-0 m-0 mt-4'>
+		<h5>Comments</h5>
+		<hr class='m-0'>
+	</div>
+	<% blog.comments.forEach(function(comment){ %>
+	<div class='row pt-2 border m-2'>
+		<div class='col-1 p-0 text-right'>
+			<div class='row justify-content-center'>
+				<img style='' src ='<%=comment.author.image%>' class='pb-3 img-fluid h-50 w-50 rounded'>
+			</div>
+		</div>
+		<div class='col-9'>
+			<div>
+				<h5>
+					<%=comment.author.name%>
+				</h5>
+			</div>
+			<div>
+				<p>
+					<%=comment.content%>
+				</p>
+				<%if(currentUser._id.equals(comment.author.id)){%>
+				<div class='d-flex p-0 m-0'>
+					<div class='mr-4'><a> Like  <i class="far fa-thumbs-up"></i></a></div>
+					<div><a> Dislike  <i class="far fa-thumbs-down"></i></a></div>
+					<div class='mx-3'>
+						<a href='/blogs/<%=blog._id%>/comments/<%=comment._id%>' class='btn btn-outline-info btn-sm'>Edit</a>
+					</div>
+					<form action='/blogs/<%=blog._id%>/comments/<%=comment._id%>?_method=DELETE' method = 'POST'>
+						<div>
+							<button class='btn btn-outline-dark btn-sm'>Delete comment</button>
+						</div>
+					</form>	
+				</div>
+				<%} else{%>
+				<div class='d-flex p-0 m-0'>
+					<div class='mr-4'><a> Like  <i class="far fa-thumbs-up"></i></a></div>
+					<div><a> Dislike  <i class="far fa-thumbs-down"></i></a></div>
+				</div>
+				<%}%>
+			</div>
+		</div>
+	</div>
+	<%});}%>
+	
+	<form action='/blogs/<%=blog._id%>/comments' method='POST'>
+		<div class='row mt-3 ml-3'>
+			<div class='col-1 bg-light'>
+				<div class='row justify-content-center'>
+					<img style='object-fit:contain;' class='img-fluid h-50 w-50' src='<%=currentUser.image%>'>
+				</div>
+			</div>
+				<div class='col-11'>
+					<textarea name='content' class='w-100' placeholder="Share what's on your mind"></textarea>
+				</div>
+		</div>
+			<div class='d-flex justify-content-start mb-5 mt-2'>
+				<button class='btn btn-dark btn-sm'>Create Comment</button>
+			</div>
+	</form>
+<!-- Load ejs here	 -->
+</div>
+<%-include('partials/footer')-%>

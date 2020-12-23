@@ -1,0 +1,25 @@
+<%-include('partials/header')-%>
+<!-- Login form -->
+<section class='container-fluid'>
+	<section class='row justify-content-center m-5'>
+		<section class='col-12 col-sm-6 col-md-3 border p-5'>
+			<form action = '/login' method ='POST'>
+			  <div class="form-group">
+				<p class='text-center'>Username</p>
+				<input name ='username' type="text" class="form-control"  placeholder="Enter username">
+			  </div>
+				<hr>
+			  <div class="form-group">
+				<p class='text-center'>Password</p>
+				<input name ='password' type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+			  <button type="submit" class="btn btn-block btn-primary my-2">Submit</button>
+			</form>
+		</section>
+	</section>
+</section>
+
+
+
+
+<%-include('partials/footer')-%>

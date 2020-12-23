@@ -1,0 +1,60 @@
+<%-include('partials/header')-%>
+<!-- Edit page for blogs -->
+<div class='container container-fluid mt-5'>
+	<form action='/blogs/<%=blog._id%>?_method=PUT' method='POST'>
+		<div class='row justify-content-center'>
+			<div class='col-6'>
+				<h1 style='text-align:center;'>
+					Edit blog
+				</h1>
+				<div class = 'form-group'>
+					<p>Title</p>
+					<input name='blog[title]' type='text' class='form-control' value='<%=blog.title%>'>
+				</div>	
+			</div>
+		</div>
+		<div class='row justify-content-center'>
+			<div class='col-6'>
+				<div class='form-group'>
+					<p>Author</p>
+					<input name='blog[author]' type='text' class='form-control' value='<%=blog.author%>'>
+				</div>
+			</div>
+		</div>
+		<div class='row justify-content-center'>
+			<div class='col-6'>
+				<div class='form-group'>
+					<p>Image url</p>
+					<input name='blog[image]' type='text' class='form-control' value='<%=blog.image%>'>
+				</div>
+			</div>
+		</div>
+		<div class='row justify-content-center'>
+			<div class='col-6'>
+				<div class='form-group'>
+					<p>Caption</p>
+					<input name='blog[caption]' type='text' class='form-control' value='<%=blog.caption%>'>
+				</div>
+			</div>
+		</div>
+		<div class='row justify-content-center'>
+			<div class='col-6'>
+				<div class='form-group'>
+					<p>Description</p>
+					<textarea name='blog[content]'  class='form-control'><%=blog.content%></textarea>
+				</div>
+			</div>
+		</div>
+		<!-- 	There should be a css styesheet later for the styles appled to the tags	 -->
+		<div class='d-flex flex-row justify-content-center'>
+			<div class=''>
+				<button class='btn btn-success btn-sm'>Save Changes</button>
+			</div>	
+	</form>
+			<div class=''>
+				<a class='btn btn-sm btn-warning ml-2' href='/blogs'><i class="fas fa-backward"></i> Go back</a>
+			</div>
+		</div>	
+</div>
+
+<%-include('partials/footer')-%>

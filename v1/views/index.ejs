@@ -1,0 +1,69 @@
+<%-include('partials/header')-%>
+<!--Show all blogs  -->
+
+<div class='jumbotron px-0'>
+	<div class='container container-fluid'>
+		<div class='row justify-content-between'>
+			<div class='col-5 p-0'>
+				<h1 class='display-4 text-left'>
+					List of blogs
+				</h1>
+				<p class='lead text-left'>Hear from people all over the world</p>
+					<a href='/blogs/new' class ='btn btn-md btn-primary'>Create a blog</a>
+			</div>	
+			<div class='col-3'>
+				<img src ='https://uvmbored.com/wp-content/uploads/2015/05/blog.jpg' class='img-fluid'>
+			</div>
+			<div class='col-3'>
+				<img class='img-fluid' src = 'https://static.timesofisrael.com/atlantajewishtimes/uploads/2020/08/blog.jpg'>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Title, author, and some description on the left, image on the right -->
+<!-- Code goes here -->
+ <% for(let i = 0; i<blogs.length; i++){ %>
+
+<div class = 'container container-fluid mb-3'>
+	<div class='row justify-content-center p-3'>
+		<div class='col-sm-5'>
+			<div class='card' style='height:100%;'>
+				<div class='card-body'>
+					<h2 class='card-title'>
+					<%=blogs[i].title%>
+					</h2>
+					<hr class= ''>
+					<p class='card-text'>
+						<%=blogs[i].caption%>
+					</p>
+					<hr class='mb-0'>
+					<div class='bg-light py-2'>
+						<div class='row justify-content-center'>
+							<div class='col-sm-2'>
+								<img style='border-radius:50%; width:100%\9; border:2px solid black;' class='img-fluid' src ='<%=blogs[i].author.image%>'>
+							</div>	
+						</div>
+						<div class='row justify-content-center py-1'>
+							<p class=''>By: <%=blogs[i].author.username%></p>
+						</div>
+					</div>
+					<hr class='my-0'>
+					<div style='text-align:center;'>
+						<a class='btn btn-outline-secondary my-2' href='/blogs/<%=blogs[i]._id%>'>Read more</a>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<div style='justify-content:center; align-items:center; overflow:hidden;' class='col-sm-6 col-md-6 col-lg-6'>
+			<img style='flex-shrink:0; min-width:100%; height:450px;' class='mw-100 mh-100' src ='<%=blogs[i].image%>'>
+		</div>
+	</div>
+</div>
+<%}%>
+<!-- EJS code goes here -->
+	
+
+
+
+
+<%-include('partials/footer')-%>

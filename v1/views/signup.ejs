@@ -1,0 +1,29 @@
+<%-include('partials/header')-%>
+<section class='container-fluid'>
+	<div class = 'row justify-content-center mt-5 mb-0'>
+		<h2>Become a blogger today!</h2>
+	</div>
+	<section class='row justify-content-center m-5'>
+		<section class='col-12 col-sm-6 col-md-3 border p-5'>
+			<form action = '/signup' method ='POST'>
+			  <div class="form-group">
+				<p class='text-center'>Username</p>
+				<input name='username' type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  </div>
+				<hr>
+			  <div class="form-group">
+				<p class='text-center'>Password</p>
+				<input name='password' type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+				<hr>
+				<div class='form-group'>
+					<p class='text-center'>Profile picture</p>
+					<input name='image' class='form-control' type='text' placeholder='Paste an image url here'>
+				</div>
+			  <button type="submit" class="btn btn-block btn-primary my-2">Submit</button>
+			</form>
+		</section>
+	</section>
+</section>
+<%-include('partials/footer')-%>
